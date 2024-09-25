@@ -1,13 +1,14 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Login from "./Login"
 import Browse from "./Browse"
-import Home from "./Home"
+import { RootHome } from "./Home";
 
 const Body = () => {
+  const HomeRoot = RootHome();
     const appRouter = createBrowserRouter([
         {
           path: "/",
-          element: <Home />
+          element: <HomeRoot />
         },
         {
           path: "/Login",
