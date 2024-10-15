@@ -2,10 +2,9 @@ import React from 'react'
 import MovieCard from './MovieCard'
 
 const MovieList = ({title, movies}) => {
-    // console.log(movies);
-    
+
     return (
-        <div>
+        <div className='py-4'>
             <h1 className='text-white'>{title}</h1>
             <div className='flex'>
                 {
@@ -14,7 +13,6 @@ const MovieList = ({title, movies}) => {
                     })
                 }
             </div>
-            {/* <MovieCard posterPath={posterPath}/> */}
         </div>
     )
 }
