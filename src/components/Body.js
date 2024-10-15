@@ -5,6 +5,7 @@ import { RootHome } from "./Home";
 
 const Body = () => {
   const HomeRoot = RootHome();
+
     const appRouter = createBrowserRouter([
         {
           path: "/",
@@ -19,6 +20,7 @@ const Body = () => {
           element: <Browse />
         }
       ])
+
     return (
         <div>
             <RouterProvider router={appRouter}/>
