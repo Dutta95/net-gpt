@@ -11,3 +11,15 @@ export const API_OPTIONS = {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNDAzNDdhOWMzY2VmOWJhNDhhN2NjZDViNGEwMzA3NiIsIm5iZiI6MTcyODM3Mzg0MC4zMzkzMjUsInN1YiI6IjY3MDBjMDEzNzgzMGMxMzAxZTdjZWIzNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.HEJSlxjju1MLtclctjNZKa3oRUHTA_YEhcbNyq-8qVI'
     }
   };
+
+  export const LAN_SUPPORT = [
+    {
+      identifier: "en", language: "English"
+    },
+    {
+      identifier: "hindi", language: "Hindi"
+    },
+    {
+      identifier: "spanish", language: "Spanish"
+    }
+  ]

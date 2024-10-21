@@ -2,22 +2,33 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../utils/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { logo_header } from "../utils/constants";
+import { LAN_SUPPORT, logo_header } from "../utils/constants";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
 import { removeNowPlayingMovies } from "../utils/moviesSlice";
+import { toggleSearchStatus } from "../utils/gptSlice";
+import { changeLanguage } from "../utils/configSlice";
 
 const Header = () => {
     const dispatch = useDispatch();
     const navigator = useNavigate();
-    const signedInUser = useSelector(data => data.user)
+    const store = useSelector(store => store);
+    const signedInUser = store.user;
+    const search = store.gpt.gptSearchStatus;
 
     const signOutHandler = () => {
         signOut(auth).then(() => {
             navigator("/Login")
           }).catch((error) => {
-            console.log(error)
           });
+    }
+
+    const searchHandler = () => {
+        dispatch(toggleSearchStatus())
+    }
+
+    const languageChangeHandler = (e) => {
+        dispatch(changeLanguage(e.target.value))
     }
 
     useEffect(() => {
@@ -50,7 +61,20 @@ const Header = () => {
             {
                 signedInUser !== null && (
                     <div>
-                        <span className=" text-red-950 font-medium pr-2">
+                        <button 
+                            className="bg-green-950 text-white h-8 mt-4 px-48 mr-40 rounded-md"
+                            onClick={searchHandler}
+                        >
+                            {search ? "Home" : "Search"}
+                        </button>
+                        <select onChange={languageChangeHandler} className="mr-4 px-2 py-1 bg-red-950 rounded-md text-gray-400">
+                            {LAN_SUPPORT.map(lang => {
+                                return (
+                                    <option value={lang.identifier}>{lang.language}</option>
+                                )
+                            })}
+                        </select>
+                        <span className=" text-teal-100 font-semibold text-lg pr-2">
                             Hello, {signedInUser.full_name}
                         </span>
                         <button 
